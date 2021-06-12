@@ -11,7 +11,7 @@ public class TerrainGenerator : MonoBehaviour
     Vector3[] vertices;
     int[] triangles;
 
-    public Vector3Int gridSize = new Vector3Int(20,0, 20);
+    public Vector3Int gridSize = new Vector3Int(100,0, 100);
     void Start()
     {
         mesh = new Mesh();
@@ -22,13 +22,15 @@ public class TerrainGenerator : MonoBehaviour
     }
     private void CreateShape()
     {
-        vertices = new Vector3[(gridSize.x + 1) * (gridSize.z + 1)];
+        int verticeAmout = (gridSize.x + 1) * (gridSize.z + 1);
+        vertices = new Vector3[verticeAmout];
 
-        for(int i = 0, z = 0; z < gridSize.z; z++)
+        for (int i = 0, z = 0; z < gridSize.z; z++)
         {
             for(int x = 0;x <= gridSize.x; x++)
             {
-                float y = Mathf.PerlinNoise(x * 0.3f, z * 0.3f) * 2f;
+                float y = Mathf.PerlinNoise(x * 0.3f, z * 0.3f) * 5f;
+
                 vertices[i] = new Vector3(x, y, z);
                 i++;
             }
@@ -59,5 +61,15 @@ public class TerrainGenerator : MonoBehaviour
 
         mesh.vertices = vertices;
         mesh.triangles = triangles;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if(vertices == null) { return; }
+
+        foreach(Vector3 vertice in vertices)
+        {
+            Gizmos.DrawSphere(vertice, 0.1f);
+        }
     }
 }
