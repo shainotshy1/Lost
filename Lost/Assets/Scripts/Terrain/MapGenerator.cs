@@ -6,7 +6,7 @@ public class MapGenerator : MonoBehaviour
 {
     public enum DrawMode
     {
-        NoiseMap, ColorMap
+        NoiseMap, ColorMap, DrawMesh
     }
     public DrawMode drawMode;
 
@@ -49,13 +49,20 @@ public class MapGenerator : MonoBehaviour
         }
 
         MapDisplay display = FindObjectOfType<MapDisplay>();
-        if(drawMode == DrawMode.NoiseMap)
+
+        Texture2D texture = TextureGenerator.TextureFromColormap(colorMap, mapWidth, mapHeight);
+
+        if (drawMode == DrawMode.NoiseMap)
         {
             display.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
         }
         else if(drawMode == DrawMode.ColorMap)
         {
-            display.DrawTexture(TextureGenerator.TextureFromColormap(colorMap,mapWidth,mapHeight));
+            display.DrawTexture(texture);
+        }
+        else if(drawMode == DrawMode.DrawMesh)
+        {
+            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap), texture);
         }
     }
 
