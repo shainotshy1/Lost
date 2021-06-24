@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1874948726729852315}
   - component: {fileID: 5500201091665061972}
   - component: {fileID: 8146478551086890175}
-  - component: {fileID: 3426539655944794270}
+  - component: {fileID: 8901550565981454867}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -150,10 +150,10 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Jump
       m_Flags: 0
-  movementSpeed: 2
+  movementSpeed: 6
   rotationSpeed: 150
   jumpForce: 3000
-  slowDownMovementSpeed: 0.04
+  slowDownMovementSpeed: 0.12
   slowDownRotationSpeed: 4
 --- !u!54 &8146478551086890175
 Rigidbody:
@@ -171,18 +171,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &3426539655944794270
-BoxCollider:
+--- !u!136 &8901550565981454867
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844202668927529226}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c4feab21390e5174aaa40bdf71a5babe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Radius: 0.25
+  m_Height: 1
+  m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &5656622107066310549
 PrefabInstance:
